@@ -8,7 +8,7 @@ on:
 env:
   # This is a base repository and we use git refs to set the version of the container
   # ${GITHUB_REF##*/} will be either a branch name or a tag depending on the event
-  REPO: 1hive/price-oracle-service
+  REPO: 1hive/fluid-proposals-service
 
 jobs:
   build:
