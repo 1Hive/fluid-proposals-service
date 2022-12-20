@@ -52,34 +52,9 @@ async function callSync(signer, fluidProposalsAddress) {
   // Wait until the network has heen established
   await provider.ready;
 
-  // Check if network supports EIP1559
-  const SUPPORTS_EIP1559 = Boolean(await provider.getBlock("latest").baseFee);
-
-  // Calculate fees
-  const feeData = await provider.getFeeData();
-
-  // Get nonce
-  const nonce = await provider.getTransactionCount(wallet.address);
-
-  let OVERRIDES;
-  if (SUPPORTS_EIP1559) {
-    OVERRIDES = {
-      gasLimit: 1400000,
-      maxFeePerGas: feeData.maxFeePerGas,
-      maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
-      nonce: nonce,
-    };
-  } else {
-    OVERRIDES = {
-      gasPrice: feeData.gasPrice,
-      gasLimit: 1400000,
-      nonce: nonce,
-    };
-  }
-
   logger.info("Calling sync...");
   try {
-    const tx = await fluidProposals.sync(OVERRIDES);
+    const tx = await fluidProposals.sync();
     logger.info(`- Sent transaction to sync fluid proposals (${tx.hash})`);
     await tx.wait();
   } catch (err) {
