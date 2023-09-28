@@ -1,5 +1,7 @@
 ## Fluid Proposals Service
 
+> **Deprecated:** 1Hive services were migrated to our [cron](https://github.com/1Hive/cron) repository.
+
 A small service that calls the sync method of the [FluidProposals](https://github.com/BlossomLabs/fluid-proposals) contract periodically.
 
 ## Running
